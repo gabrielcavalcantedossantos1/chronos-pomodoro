@@ -2,8 +2,10 @@
 import './styles/thema.css'
 import './styles/global.css'
 
+//react
+import { useState } from 'react'
+
 //components
-//import Heading from './components/Heading/index'
 import Container from './components/Container/index'
 import Logo from './components/Logo/index'
 import Menu from './components/Menu/index'
@@ -12,14 +14,26 @@ import DefaultInput from './components/DefaultInput/Index'
 import Cycles from './components/Cycles/Index'
 import DefaultButton from './components/DefaultButton/Index'
 import Footer from './components/Footer'
+import Heading from './components/Heading'
 
 //icons
-import { PlayCircleIcon, StopCircleIcon } from 'lucide-react'
+import { PlayCircleIcon } from 'lucide-react'
 
 const App = () => {
+  const [numero, setNumero] = useState(0)
+
+  const handleClick = () => {
+    setNumero(numero => numero + 1)
+  }
 
   return (
   <>
+
+  <Heading>
+    Número: <span>{numero}</span>
+  </Heading>
+    <button onClick={handleClick}>Incrementar</button>
+
   <Container>
     <Logo/>
   </Container>
