@@ -3,7 +3,7 @@ import './styles/thema.css'
 import './styles/global.css'
 
 //components
-import Heading from './components/Heading/index'
+//import Heading from './components/Heading/index'
 import Container from './components/Container/index'
 import Logo from './components/Logo/index'
 import Menu from './components/Menu/index'
@@ -32,7 +32,12 @@ const App = () => {
   <Container>
     <form action="" className='form'>
       <div className="formRow">
-        <DefaultInput type='text' id='input'/>
+        <DefaultInput 
+        id='input' 
+        type='text' 
+        label='Tarefa'
+        placeholder='TITULO'
+        />
       </div>
 
       <div className="formRow">
