@@ -9,6 +9,7 @@ import Logo from './components/Logo/index'
 import Menu from './components/Menu/index'
 import CountDown from './components/CountDown/index'
 import DefaultInput from './components/DefaultInput/Index'
+import Cycles from './components/Cycles/Index'
 
 //icons
 //import {TimerIcon } from 'lucide-react'
@@ -45,8 +46,7 @@ const App = () => {
       </div>
 
       <div className="formRow">
-        <p>Ciclos</p>
-        <p>0 0 0 0 0 0</p>
+        <Cycles/>
       </div>
 
       <div className="formRow">
