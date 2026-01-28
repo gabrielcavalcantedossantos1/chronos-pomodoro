@@ -2,7 +2,7 @@
 import styles from './styles.module.css'
 
 //react
-import { useState, useEffect, useEffectEvent } from 'react'
+import { useState, useEffect } from 'react'
 
 //icons
 import { HouseIcon, HistoryIcon, SettingsIcon, SunIcon, MoonIcon} from 'lucide-react'
