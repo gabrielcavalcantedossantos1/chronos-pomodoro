@@ -6,6 +6,7 @@ import './styles/global.css'
 import Heading from './components/Heading'
 import Container from './components/Container'
 import Logo from './components/Logo'
+import Menu from './components/Menu'
 
 //icons
 //import {TimerIcon } from 'lucide-react'
@@ -19,7 +20,7 @@ const App = () => {
   </Container>
 
   <Container>
-    <Heading>MENU</Heading>
+    <Menu/>
   </Container>
   </>
   )
