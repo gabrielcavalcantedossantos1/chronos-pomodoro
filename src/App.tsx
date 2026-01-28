@@ -10,9 +10,10 @@ import Menu from './components/Menu/index'
 import CountDown from './components/CountDown/index'
 import DefaultInput from './components/DefaultInput/Index'
 import Cycles from './components/Cycles/Index'
+import DefaultButton from './components/DefaultButton/Index'
 
 //icons
-//import {TimerIcon } from 'lucide-react'
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react'
 
 const App = () => {
 
@@ -50,7 +51,8 @@ const App = () => {
       </div>
 
       <div className="formRow">
-        <button>Enviar</button>
+        <DefaultButton icon={<PlayCircleIcon/>} color='green'/>
+        <DefaultButton icon={<StopCircleIcon/>} color='red'/>
       </div>
     </form>
   </Container>
