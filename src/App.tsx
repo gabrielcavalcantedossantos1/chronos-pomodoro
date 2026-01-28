@@ -36,7 +36,7 @@ const App = () => {
         id='input' 
         type='text' 
         label='Tarefa'
-        placeholder='TITULO'
+        placeholder='Digite algo'
         />
       </div>
 

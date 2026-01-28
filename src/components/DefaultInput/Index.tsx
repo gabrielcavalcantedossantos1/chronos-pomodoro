@@ -1,3 +1,7 @@
+//css
+import styles from './styles.module.css'
+
+//type
 type DefaultInputProps = {
     id: string;
     label: string
@@ -8,7 +12,7 @@ const Index = ({ type, id, label, ...rest }: DefaultInputProps) => {
     <>
     <label htmlFor={id}>{label}</label>
         
-        <input type={type} id={id} {...rest}/>
+        <input className={styles.input} type={type} id={id} {...rest}/>
     </>
   )
 }
