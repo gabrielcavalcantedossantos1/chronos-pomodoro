@@ -3,11 +3,12 @@ import './styles/thema.css'
 import './styles/global.css'
 
 //components
-import Heading from './components/Heading'
-import Container from './components/Container'
-import Logo from './components/Logo'
-import Menu from './components/Menu'
-import CountDown from './components/CountDown'
+import Heading from './components/Heading/index'
+import Container from './components/Container/index'
+import Logo from './components/Logo/index'
+import Menu from './components/Menu/index'
+import CountDown from './components/CountDown/index'
+import DefaultInput from './components/DefaultInput/Index'
 
 //icons
 //import {TimerIcon } from 'lucide-react'
@@ -31,8 +32,7 @@ const App = () => {
   <Container>
     <form action="" className='form'>
       <div className="formRow">
-        <label htmlFor="input">Tarefa</label>
-        <input type="text" id='input' />
+        <DefaultInput type='text' id='input'/>
       </div>
 
       <div className="formRow">
