@@ -11,6 +11,7 @@ import CountDown from './components/CountDown/index'
 import DefaultInput from './components/DefaultInput/Index'
 import Cycles from './components/Cycles/Index'
 import DefaultButton from './components/DefaultButton/Index'
+import Footer from './components/Footer'
 
 //icons
 import { PlayCircleIcon, StopCircleIcon } from 'lucide-react'
@@ -52,9 +53,12 @@ const App = () => {
 
       <div className="formRow">
         <DefaultButton icon={<PlayCircleIcon/>} color='green'/>
-        <DefaultButton icon={<StopCircleIcon/>} color='red'/>
       </div>
     </form>
+  </Container>
+
+  <Container>
+    <Footer/>
   </Container>
   </>
   )
