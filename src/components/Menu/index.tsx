@@ -10,22 +10,29 @@ import { HouseIcon, HistoryIcon, SettingsIcon, SunIcon, MoonIcon} from 'lucide-r
 type availableThemes = 'dark' | 'light'
 
 const Menu = () => {
-    const [theme, setTheme] = useState<availableThemes>('dark')
+    const [theme, setTheme] = useState<availableThemes>(() => {
+        const storedTheme = localStorage.getItem('theme')
 
-    const handleThemeChenge = (
+        if (storedTheme === 'dark' || storedTheme === 'light') {
+            return storedTheme
+        }
+        return 'dark'
+
+    })
+
+    const handleThemeChange = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
     ) => {
         e.preventDefault()
 
-        console.log('clicado', Date.now())
-
-        setTheme(theme === 'dark' ? 'light' : 'dark')
+        setTheme(theme => theme === 'dark' ? 'light' : 'dark')
     }
 
     useEffect(() => {
-        console.log('tema', theme)
 
         document.documentElement.setAttribute('data-theme', theme)
+        localStorage.setItem('theme', theme)
+
     }, [theme])
 
  return (
@@ -39,7 +46,7 @@ const Menu = () => {
         <a href="#" className={styles.menuLink} aria-label='Configurações' title='Configurações'>
             <SettingsIcon/>
         </a>
-        <a href="#" className={styles.menuLink} aria-label='Mudar Tema' title='Mudar Tema' onClick={handleThemeChenge}>
+        <a href="#" className={styles.menuLink} aria-label='Mudar Tema' title='Mudar Tema' onClick={handleThemeChange}>
             {theme === 'dark' ? <SunIcon/> : <MoonIcon/>}
         </a>
     </nav>
