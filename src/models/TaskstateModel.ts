@@ -2,7 +2,7 @@ import type { TaskModel } from './TaskModel'
 
 // Estado -> componente -> filhos
 
-export type TaskState = {
+export type TaskStateModel = {
     tasks: TaskModel[] //historico, MainForm
     secondsRemaining: number //CountDown, Historico, MainForm, button, home
     formattedSecondsRemaining: string //titulo, CountDown
