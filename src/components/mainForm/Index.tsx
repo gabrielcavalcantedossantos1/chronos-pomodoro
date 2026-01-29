@@ -4,10 +4,8 @@ import DefaultButton from '../DefaultButton/Index'
 import Cycles from '../Cycles/Index'
 import {PlayCircleIcon} from 'lucide-react'
 
-//type 
-import type { HomeProps } from '../../pages/Home'
 
-const MainForm = ({state, setState} : HomeProps) => {
+const MainForm = () => {
 
   return (
   <form action="" className='form'>
@@ -21,7 +19,7 @@ const MainForm = ({state, setState} : HomeProps) => {
       </div>
 
       <div className="formRow">
-        <p>Próximo ciclo em {state.secondsRemaining}</p>
+        <p>Próximo ciclo em 25 min</p>
       </div>
 
       <div className="formRow">

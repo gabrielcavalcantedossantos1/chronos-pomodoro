@@ -6,7 +6,7 @@ import './styles/global.css'
 import Home from './pages/Home'
 
 //react
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 //type
 import type { TaskModel } from './models/TaskModel'
