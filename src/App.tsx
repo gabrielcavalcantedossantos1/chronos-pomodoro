@@ -1,11 +1,11 @@
 //components
+import { TaskContextProvider } from './contexts/TaskContext/TaskContextProvider'
+import { useTaskContext } from './contexts/TaskContext/useTaskContext'
 import Home from './pages/Home'
 
 //css
 import './styles/global.css'
 import './styles/thema.css'
-//type
-import { TaskContextProvider, useTaskContext } from './contexts/TaskContext'
 
 
 const App = () => {

@@ -3,10 +3,12 @@ import DefaultInput from '../DefaultInput/Index'
 import DefaultButton from '../DefaultButton/Index'
 import Cycles from '../Cycles/Index'
 import {PlayCircleIcon} from 'lucide-react'
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 
 
 const MainForm = () => {
-
+  const { setState } = useTaskContext()
+  console.log(setState)
   return (
   <form action="" className='form'>
       <div className="formRow">
