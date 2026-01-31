@@ -9,6 +9,7 @@ import type { TaskModel } from '../../models/TaskModel'
 import { useTaskContext } from '../../contexts/TaskContext'
 import { getNextCycle } from '../../utils/getNextCycle'
 import { getNextCycleType } from '../../utils/getNextCycleType'
+import { formattedSecondsRemaining } from '../../utils/formateSecondsToMinuts'
 
 
 const MainForm = () => {
@@ -26,6 +27,8 @@ const MainForm = () => {
     if(taskNameInput.current === null) return
 
     const taskName = taskNameInput.current.value.trim()
+
+
     
     if(!taskName) {
       alert('Digite algo')
@@ -38,7 +41,7 @@ const MainForm = () => {
       startDate: Date.now(),
       completeDate: null,
       interruptDate: null,
-      duration: 1,
+      duration: state.config[nextCycleType],
       type: nextCycleType
     }
 
@@ -50,7 +53,7 @@ const MainForm = () => {
       activeTask:newTask,
       currentCycle: nextCycle,
       secondsRemaining, //coferir
-      formattedSecondsRemaining: '00:00',
+      formattedSecondsRemaining: formattedSecondsRemaining(secondsRemaining),
       tasks: [...state.tasks, newTask]
     }))
   }
