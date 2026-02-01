@@ -2,7 +2,7 @@
 import DefaultInput from '../DefaultInput/Index'
 import DefaultButton from '../DefaultButton/Index'
 import Cycles from '../Cycles/Index'
-import {PlayCircleIcon} from 'lucide-react'
+import {PlayCircleIcon, StopCircleIcon} from 'lucide-react'
 //import { useTaskContext } from '../../contexts/TaskContext/useTaskContext'
 import { useRef } from 'react'
 import type { TaskModel } from '../../models/TaskModel'
@@ -66,9 +66,8 @@ const MainForm = () => {
         type='text' 
         label='Tarefa'
         placeholder='Digite algo'
-        // value={taskName}
-        // onChange={e => setTaskName(e.target.value)}
         ref={taskNameInput}
+        disabled={!!state.activeTask}
         />
       </div>
 
@@ -76,12 +75,20 @@ const MainForm = () => {
         <p>Próximo ciclo em 25 min</p>
       </div>
 
-      <div className="formRow">
-        <Cycles/>
-      </div>
+      {state.currentCycle > 0
+       && (
+        <div className="formRow">
+          <Cycles/>
+        </div>
+      )}
 
       <div className="formRow">
-        <DefaultButton icon={<PlayCircleIcon/>} color='green'/>
+        {!state.activeTask ? (
+          <DefaultButton aria-label='Iniciar' title='Iniciar' icon={<PlayCircleIcon/>} type='submit'/>
+        ) : (
+          <DefaultButton aria-label='Parar' title='parar' icon={<StopCircleIcon/>} type='button' color='red'/>
+        )}
+          
       </div>
     </form>
   )
