@@ -36,7 +36,7 @@ const MainForm = () => {
     }
     
     const newTask: TaskModel = {
-      id: (Math.random() * 100).toString(),
+      id: Math.random().toString(),
       name: taskName,
       startDate: Date.now(),
       completeDate: null,
@@ -56,6 +56,23 @@ const MainForm = () => {
       formattedSecondsRemaining: formattedSecondsRemaining(secondsRemaining),
       tasks: [...state.tasks, newTask]
     }))
+  }
+
+  function handleInterruptTask() {
+    setState(state => {
+      return {
+        ...state,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00',
+        tasks: state.tasks.map(task => {
+          if(state.activeTask && state.activeTask.id === task.id) {
+            return {...task, interruptDate: Date.now()}
+          }
+          return task
+        })
+      }
+    })
   }
 
   return (
@@ -84,9 +101,23 @@ const MainForm = () => {
 
       <div className="formRow">
         {!state.activeTask ? (
-          <DefaultButton aria-label='Iniciar' title='Iniciar' icon={<PlayCircleIcon/>} type='submit'/>
+          <DefaultButton 
+            aria-label='Iniciar' 
+            title='Iniciar' 
+            icon={<PlayCircleIcon/>} 
+            type='submit' 
+            key='botao_submit'
+          />
         ) : (
-          <DefaultButton aria-label='Parar' title='parar' icon={<StopCircleIcon/>} type='button' color='red'/>
+          <DefaultButton 
+            aria-label='Parar' 
+            title='parar' 
+            icon={<StopCircleIcon/>} 
+            type='button' 
+            color='red' 
+            onClick={handleInterruptTask} 
+            key='botao_button'
+          />
         )}
           
       </div>
