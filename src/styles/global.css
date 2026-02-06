@@ -30,3 +30,11 @@ body {
     justify-content: center;
     gap:2.4rem;
 }
+
+input:focus,
+input:active,
+input:focus-visible {
+  background-color: transparent; 
+  outline: none;
+  box-shadow: none;
+}

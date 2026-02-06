@@ -37,7 +37,7 @@ const Menu = () => {
 
  return (
     <nav className={styles.menu}>
-        <a href="#" className={styles.menuLink} aria-label='Ir para a Home' title='Ir para a Home'>
+        <a href="/" className={styles.menuLink} aria-label='Ir para a Home' title='Ir para a Home'>
             <HouseIcon/>
         </a>
         <a href="#" className={styles.menuLink} aria-label='Ver Historico' title='Ver Historico'>
