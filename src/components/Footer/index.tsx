@@ -1,4 +1,5 @@
 //css
+import { Link } from 'react-router-dom'
 import styles from './styles.module.css'
 
 
@@ -6,8 +7,8 @@ import styles from './styles.module.css'
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <a href="">Entenda como funciona a técnica Pomodoro</a>
-      <a href="">Chronos Pomodoro &copy; {new Date().getFullYear()}</a>
+      <Link to="/about-pomodoro">Entenda como funciona a técnica Pomodoro</Link>
+      <Link to="/">Chronos Pomodoro &copy; {new Date().getFullYear()}</Link>
     </footer>
   )
 }
