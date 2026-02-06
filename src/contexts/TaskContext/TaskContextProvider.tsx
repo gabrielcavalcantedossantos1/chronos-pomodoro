@@ -13,14 +13,11 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
   const [state, dispatch] = useReducer(taskReducer, initialTaskState)
 
   useEffect(() => {
-    console.log(state)
-    
     const worker = TimerWorkerManager.getInstance()
 
     const handleMessage = (e: MessageEvent) => {
       const secondsRemaining = e.data as number
 
-      // ⛔ Se não tem task ativa, ignora QUALQUER mensagem
       if (!state.activeTask) {
         worker.terminate()
         return
@@ -38,7 +35,6 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
       })
     }
 
-    // 👉 Se NÃO há task ativa, mata o worker e não inicia nada
     if (!state.activeTask) {
       worker.terminate()
       return
