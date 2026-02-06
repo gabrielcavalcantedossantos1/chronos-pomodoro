@@ -5,12 +5,15 @@ import Home from './pages/Home'
 //css
 import './styles/global.css'
 import './styles/thema.css'
+import { MessagesContainer } from './components/messagesContainer'
 
 
 const App = () => {
   return (
     <TaskContextProvider>
-      <Home />
+      <MessagesContainer>
+        <Home />
+      </MessagesContainer>
     </TaskContextProvider>
   )
 }

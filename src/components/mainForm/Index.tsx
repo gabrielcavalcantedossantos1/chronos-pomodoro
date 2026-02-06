@@ -20,6 +20,7 @@ import { getNextCycleType } from '../../utils/getNextCycleType'
 
 // Types
 import type { TaskModel } from '../../models/TaskModel'
+import { showMessage } from '../../adapters/showMessage'
 
 const MainForm = () => {
   const { state, dispatch } = useTaskContext()
@@ -31,13 +32,14 @@ const MainForm = () => {
 
   function handleCreateNewTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    showMessage.dismiss()
 
     if (!taskNameInput.current) return
 
     const taskName = taskNameInput.current.value.trim()
 
     if (!taskName) {
-      alert('Digite algo')
+      showMessage.warn('Digite o nome da tarefa!')
       return
     }
 
@@ -55,9 +57,13 @@ const MainForm = () => {
       type: TaskActionType.START_TASK,
       payload: newTask,
     })
+
+    showMessage.success('Tarefa iniciada!')
   }
 
   function handleInterruptTask() {
+    showMessage.dismiss()
+    showMessage.error('Tarefa interrompida!')
     dispatch({ type: TaskActionType.INTERRUPT_TASK })
   }
 
