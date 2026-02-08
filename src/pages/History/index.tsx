@@ -9,6 +9,9 @@ import DefaultButton from '../../components/DefaultButton/Index'
 import { TrashIcon } from 'lucide-react'
 import { useTaskContext } from '../../contexts/TaskContext'
 import { formatDate } from '../../utils/formatdate'
+import { getTaskStatus } from '../../utils/getTaskstatus'
+import { getFormatNameTask } from '../../utils/getFormatNameTask;'
+
 
 
 export function History() {
@@ -46,8 +49,8 @@ export function History() {
                       <td>{tarefa.name}</td>
                       <td>{tarefa.duration}min</td>
                       <td>{formatDate(tarefa.startDate)}</td>
-                      <td>{tarefa.completeDate ? 'Concluida' : tarefa.interruptDate ? 'Interrompida' : 'Em andamento'}</td>
-                      <td>{tarefa.type}</td>
+                      <td>{getTaskStatus(tarefa, state.activeTask)}</td>
+                      <td>{getFormatNameTask(tarefa.type)}</td>
                     </tr>
                   )
                 })}

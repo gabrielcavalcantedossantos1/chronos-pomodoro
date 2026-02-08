@@ -11,41 +11,50 @@ type TaskContextProviderProps = {
   children: React.ReactNode
 }
 
+const STORAGE_KEY = 'task-state' // 🔐 chave única do localStorage
+
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
+
+  /**
+   * Inicializa o reducer carregando o estado salvo no localStorage (se existir)
+   */
   const [state, dispatch] = useReducer(
-  taskReducer,
-  initialTaskState,
-  () => {
-    const storageState = localStorage.getItem('state')
+    taskReducer,
+    initialTaskState,
+    () => {
+      const storageState = localStorage.getItem(STORAGE_KEY)
 
-    if (!storageState) {
-      return initialTaskState
+      if (!storageState) {
+        return initialTaskState
+      }
+
+      const parsedStorageState = JSON.parse(storageState) as TaskStateModel
+
+      // 🛡️ trava de segurança ao recarregar a página
+      return {
+        ...parsedStorageState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: '00:00'
+      }
     }
-
-    const parsedStorageState = JSON.parse(storageState) as TaskStateModel
-
-    return {
-      ...parsedStorageState,
-      activeTask:null,
-      secondsRemaining: 0,
-      formattedSecondsRemaining: '00:00'
-    }
-  }
-)
-
+  )
 
   const playBeepRef = useRef<(() => void) | null>(null)
 
+  /**
+   * Salva o estado no localStorage sempre que ele mudar
+   */
   useEffect(() => {
-    
-        localStorage.setItem('tasks', JSON.stringify(state))
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
 
-    document.title = `${state.formattedSecondsRemaining} - Chronos Pomodoro `
+    document.title = `${state.formattedSecondsRemaining} - Chronos Pomodoro`
+  }, [state])
 
-  }, [Worker,state])
-
+  /**
+   * Carrega / limpa o som quando a tarefa ativa muda
+   */
   useEffect(() => {
-
     if (state.activeTask && !playBeepRef.current) {
       playBeepRef.current = loadBeep()
     }
@@ -55,8 +64,10 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
     }
   }, [state.activeTask])
 
+  /**
+   * Controla o Web Worker do timer
+   */
   useEffect(() => {
-
     if (!state.activeTask) return
 
     const worker = TimerWorkerManager.getInstance()
@@ -73,7 +84,6 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
         return
       }
 
-      
       dispatch({
         type: TaskActionType.COUNT_DOWN,
         payload: { secondsRemaining }
@@ -81,7 +91,6 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
     }
 
     worker.addEventListener("message", handleMessage)
-
     worker.postMessage(state)
 
     return () => {
