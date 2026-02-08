@@ -7,9 +7,12 @@ import MainTemplate from '../../Template/MainTemplate'
 import Heading from '../../components/Heading'
 import DefaultButton from '../../components/DefaultButton/Index'
 import { TrashIcon } from 'lucide-react'
+import { useTaskContext } from '../../contexts/TaskContext'
+import { formatDate } from '../../utils/formatdate'
 
 
 export function History() {
+  const {state} = useTaskContext()
 
   return (
   <>
@@ -37,14 +40,14 @@ export function History() {
               </thead>
 
               <tbody>
-                {Array.from({length: 20}).map((_, index) => {
+                {state.tasks.map(tarefa => {
                   return (
-                    <tr key={index}>
-                      <td>Tarefa</td>
-                      <td>00:00:00</td>
-                      <td>00/00/0000</td>
-                      <td>Concluido</td>
-                      <td>Tipo</td>
+                    <tr key={tarefa.id}>
+                      <td>{tarefa.name}</td>
+                      <td>{tarefa.duration}min</td>
+                      <td>{formatDate(tarefa.startDate)}</td>
+                      <td>{tarefa.completeDate ? 'Concluida' : tarefa.interruptDate ? 'Interrompida' : 'Em andamento'}</td>
+                      <td>{tarefa.type}</td>
                     </tr>
                   )
                 })}
