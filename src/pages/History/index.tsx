@@ -11,14 +11,35 @@ import { useTaskContext } from '../../contexts/TaskContext'
 import { formatDate } from '../../utils/formatdate'
 import { getTaskStatus } from '../../utils/getTaskstatus'
 import { getFormatNameTask } from '../../utils/getFormatNameTask;'
+import { sortTasks, type SortTasksOptions } from '../../utils/sortedTasks'
+import { useState } from 'react'
 
 
 
 export function History() {
   const {state} = useTaskContext()
+  const [sortTaskOptinion, setSortTaskOptinion] = useState<SortTasksOptions>(() => {
+    return {
+      tasks: sortTasks({tasks: state.tasks}),
+      field: 'startDate',
+      direction: 'desc'
+    }
+  })
 
+  function handleSortTasks({field}: Pick<SortTasksOptions, 'field'>) {
+    const newDirection = sortTaskOptinion.direction === 'desc' ? 'asc' : 'desc'
+
+    setSortTaskOptinion({
+      tasks: sortTasks({
+        direction: newDirection,
+        tasks: sortTaskOptinion.tasks,
+        field,
+      }),
+      direction: newDirection,
+      field
+    })
+  }
   return (
-  <>
     <MainTemplate>
         <Container>
             <Heading>
@@ -34,16 +55,16 @@ export function History() {
             <table>
               <thead>
                 <tr>
-                  <th>Tarefa</th>
-                  <th>Duração</th>
-                  <th>Data</th>
+                    <th onClick={() => handleSortTasks({field: 'name'})} className={styles.thSort}>Tarefa</th>
+                  <th onClick={() => handleSortTasks({field: 'duration'})} className={styles.thSort}>Duração ⭥</th>
+                  <th onClick={() => handleSortTasks({field: 'startDate'})} className={styles.thSort}>Data ⭥</th>
                   <th>Status</th>
                   <th>Tipo</th>
                 </tr>
               </thead>
 
               <tbody>
-                {state.tasks.map(tarefa => {
+                {sortTaskOptinion.tasks.map(tarefa => {
                   return (
                     <tr key={tarefa.id}>
                       <td>{tarefa.name}</td>
@@ -59,6 +80,5 @@ export function History() {
           </div>
         </Container>
     </MainTemplate>
-  </>
   )
 }

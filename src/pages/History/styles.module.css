@@ -35,3 +35,12 @@
 .resposiveTable td {
   background-color: var(--gray-800);
 }
+
+.thSort {
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.thSort:hover{
+  filter: brightness(80%);
+}
