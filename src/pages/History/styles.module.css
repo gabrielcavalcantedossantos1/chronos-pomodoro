@@ -9,30 +9,31 @@
   height: 2rem;
 }
 
-.resposiveTable{
+.responsiveTable{
   overflow-x: auto;
   border-radius: 0.8rem;
+  margin-top: 3rem;
 }
 
-.resposiveTable table{
+.responsiveTable table{
   width: 100%;
   min-width: 64rem;
   font-size: 1.6rem;
   border-collapse: collapse;
 }
 
-.resposiveTable th,
-.resposiveTable td{
+.responsiveTable th,
+.responsiveTable td{
   border-bottom: var(--gray-700);
   text-align: left;
   padding: 1.6rem;
 }
 
-.resposiveTable th{
+.responsiveTable th{
   background-color: var(--gray-600);
 }
 
-.resposiveTable td {
+.responsiveTable td {
   background-color: var(--gray-800);
 }
 

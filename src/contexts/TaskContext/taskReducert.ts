@@ -65,7 +65,7 @@ export function taskReducer(
     }
 
     case TaskActionType.RESET_STATE: {
-      return initialTaskState
+      return {...initialTaskState}
     }
 
     default: {
