@@ -19,10 +19,11 @@ import { useEffect, useState } from 'react'
 import { sortTasks, type SortTasksOptions } from '../../utils/sortedTasks'
 import { formatDate } from '../../utils/formatdate'
 import { getTaskStatus } from '../../utils/getTaskstatus'
-import { getFormatNameTask } from '../../utils/getFormatNameTask;'
-
-// actions
+import { showMessage } from '../../adapters/showMessage'
 import { TaskActionType } from '../../contexts/TaskContext/taskActions'
+import { getFormatNameTask } from '../../utils/getFormatNameTask'
+
+
 
 
 export function History() {
@@ -60,9 +61,13 @@ export function History() {
     }))
   }, [state.tasks])
 
+
   function handleResetHistory() {
-    if (!confirm('Tem certeza que deseja apagar o histórico?')) return
-    dispatch({ type: TaskActionType.RESET_STATE })
+    showMessage.dismiss()
+    showMessage.confirm("Deseja realmente apagar todo o histórico?", confirmation => {
+      if (!confirmation) return
+      dispatch({ type: TaskActionType.RESET_STATE })
+    })
   }
 
   return (
