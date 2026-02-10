@@ -7,6 +7,7 @@ import AboutPomodoro from "../../pages/AboutPomodoro";
 import NotFound from "../../pages/NotFound";
 import { useEffect } from "react";
 import { History } from "../../pages/History";
+import { Config } from "../../pages/Config";
 
 function ScrollParaCima() {
   const {pathname} = useLocation()
@@ -27,6 +28,7 @@ export function MainRouter() {
           <Route path='/' element={<Home/>}/>
           <Route path='/about-pomodoro' element={<AboutPomodoro/>}/>
           <Route path="/history" element={<History/>}/>
+          <Route path="/settings" element={<Config/>}/>
 
           <Route path='*' element={<NotFound/>}/>
         </Routes>

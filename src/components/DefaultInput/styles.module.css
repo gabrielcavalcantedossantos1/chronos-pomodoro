@@ -11,10 +11,13 @@
     transition: all 0.1s ease-in-out;
 }
 
-.input:focus{
+.input:focus,
+.input:active,
+.input:focus-visible
+{
     border-radius: .8rem;
     border: .2rem solid var(--primary);
-    
+    background-color: transparent;
 }
 
 .input::placeholder{
