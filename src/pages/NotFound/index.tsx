@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import MainTemplate from "../../Template/MainTemplate"
 import Container from "../../components/Container"
 import GenericHtml from "../../components/GenericHTML"
@@ -5,6 +6,10 @@ import Heading from "../../components/Heading"
 import { RouterLink } from "../../components/RouterLink"
 
 const NotFound = () => {
+  useEffect(() => {
+    document.title = '404 - Chronos Pomodoro'
+  }, [])
+
   return (
     <MainTemplate>
       <Container>

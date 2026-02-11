@@ -27,6 +27,10 @@ import { getFormatNameTask } from '../../utils/getFormatNameTask'
 
 
 export function History() {
+  useEffect(() => {
+    document.title = 'Histórico - Chronos Pomodoro'
+  }, [])
+
   const { state, dispatch } = useTaskContext()
   const hasTasks = state.tasks.length > 0
 

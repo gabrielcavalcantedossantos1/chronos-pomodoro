@@ -3,8 +3,12 @@ import Heading  from '../../components/Heading';
 import GenericHtml  from '../../components/GenericHTML';
 import MainTemplate  from '../../Template/MainTemplate';
 import { RouterLink } from '../../components/RouterLink';
+import { useEffect } from 'react';
 
 const AboutPomodoro = () => {
+  useEffect(() => {
+    document.title = 'A Técnica Pomodoro - Chronos Pomodoro'
+  }, [])
   return (
     <MainTemplate>
       <Container>
